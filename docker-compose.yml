@@ -22,7 +22,7 @@ services:
       - ./server:/app/server
       - /app/server/node_modules
     ports:
-      - 5000:5000
+      - 3001:3001
     environment:
       NODE_ENV: production
       DB_HOST: db
