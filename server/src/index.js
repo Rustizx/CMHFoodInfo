@@ -1,8 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
+
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -14,21 +14,14 @@ app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", function (req, res) {
+  res.send("Hello World! CMH FOOD INFO");
+});
+
 function start() {
-  mongoose
-    .connect(process.env.DATABASE_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => {
-      console.log(`Database is connected to ${process.env.DATABASE_URL}`);
-      app.listen(PORT, () => {
-        console.log(`Application is up and running on port ${PORT}`);
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  app.listen(PORT, () => {
+    console.log(`Application is up and running on port ${PORT}`);
+  });
 }
 
 start();
